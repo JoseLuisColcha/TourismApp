@@ -1,3 +1,26 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start" menuId="first" contentId="main">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle autohide="false">
+          <ion-item button="true" detail="true" routerLink="/set-productos">
+            <ion-label>Restaurantes</ion-label>
+            <ion-icon slot="start" name="restaurant-outline"></ion-icon>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle autohide="false">
+          <ion-item button="true" detail="true">
+            <ion-label>Hoteles</ion-label>
+            <ion-icon slot="start" name="bed-outline"></ion-icon>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

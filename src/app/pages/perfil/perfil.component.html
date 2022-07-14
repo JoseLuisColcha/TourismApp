@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text">Perfil</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="openMenu()">
+        <ion-icon
+          color="primary"
+          slot="icon-only"
+          name="menu-outline"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<h3 class="header-profile">Información del Perfil</h3>
+
+<ion-item>
+  <ion-label position="floating"> Email: </ion-label>
+  <ion-input [(ngModel)]="client.email" type="text" inputmode="text">
+  </ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating"> Nombre: </ion-label>
+  <ion-input [(ngModel)]="client.name" type="text" inputmode="text">
+  </ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating"> Telefono celular: </ion-label>
+  <ion-input [(ngModel)]="client.phoneNumber" type="number" inputmode="numeric">
+  </ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating"> Descripción: </ion-label>
+  <ion-input [(ngModel)]="client.description" type="text" inputmode="text">
+  </ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label> Foto: </ion-label>
+  <ion-buttons slot="end">
+    <ion-button>
+      <label for="file-upload">
+        <ion-icon slot="icon-only" name="images-outline"></ion-icon>
+      </label>
+      <input
+        (change)="newImageUpload($event)"
+        id="file-upload"
+        style="display: none"
+        type="file"
+        accept="image/*"
+      />
+    </ion-button>
+  </ion-buttons>
+</ion-item>
+<ion-item>
+  <img [src]="client.image" />
+</ion-item>
+
+<div style="text-align: end; margin: 10px">
+  <ion-button color="dark" (click)="register()">Registrar</ion-button>
+</div>

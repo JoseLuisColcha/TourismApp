@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text"> Restaurantes</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="openMenu()">
+        <ion-icon
+          color="primary"
+          slot="icon-only"
+          name="menu-outline"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="enableNewRestaurant">
+    <ion-item>
+      <ion-buttons slot="end">
+        <ion-button (click)="enableNewRestaurant = false">
+          <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+    <h3 class="header-product">Datos del restaurante</h3>
+    <ion-item>
+      <ion-label position="floating"> Nombre: </ion-label>
+      <ion-input [(ngModel)]="newRestaurant.name" type="text" inputmode="text">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating"> Precio: </ion-label>
+      <ion-input
+        [(ngModel)]="newRestaurant.price"
+        type="number"
+        inputmode="numeric"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating"> Descripción: </ion-label>
+      <ion-input
+        [(ngModel)]="newRestaurant.description"
+        type="text"
+        inputmode="text"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item (click)="addDirection()">
+      <ion-label class="normal"> Ubicación </ion-label>
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon slot="icon-only" color="danger" name="location"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+    <ion-item>
+      <ion-label> Foto </ion-label>
+      <ion-buttons slot="end">
+        <ion-button>
+          <label for="file-upload">
+            <ion-icon slot="icon-only" name="images-outline"></ion-icon>
+          </label>
+          <input
+            (change)="newImageUpload($event)"
+            id="file-upload"
+            style="display: none"
+            type="file"
+            accept="image/*"
+          />
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+    <ion-item>
+      <img [src]="newRestaurant.image" />
+    </ion-item>
+    <div style="text-align: end; margin: 10px">
+      <ion-button expand="block" color="primary" (click)="saveItem()"
+        >Guardar</ion-button
+      >
+    </div>
+  </div>
+
+  <div *ngIf="!enableNewRestaurant">
+    <h3 class="header-product">Lista de Restaurantes</h3>
+
+    <ion-card *ngFor="let restaurant of restaurants">
+      <ion-card>
+        <img src="{{ restaurant.image }}" />
+        <ion-card-header>
+          <ion-card-title>{{ restaurant.name }}</ion-card-title>
+          <ion-card-subtitle>$ {{ restaurant.price }}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content> {{ restaurant.description }}</ion-card-content>
+      </ion-card>
+      <ion-button
+        (click)="newRestaurant = restaurant; enableNewRestaurant = true"
+      >
+        <ion-icon slot="icon-only" name="create-sharp"></ion-icon>
+      </ion-button>
+      <ion-button (click)="deleteItem(restaurant)">
+        <ion-icon slot="icon-only" color="danger" name="trash-bin"></ion-icon>
+      </ion-button>
+    </ion-card>
+    <div style="text-align: end; margin: 10px">
+      <ion-button expand="block" color="primary" (click)="newItem()"
+        >Nuevo</ion-button
+      >
+    </div>
+  </div>
+</ion-content>

@@ -1,22 +1,37 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { SetProductosComponent } from './backend/set-restaurants/set-restaurants.component';
+import { HomeComponent } from './pages/home/home.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    component: HomeComponent,
+  },
+  {
+    path: 'set-productos',
+    component: SetProductosComponent,
+  },
+  {
+    path: 'perfil',
+    component: PerfilComponent,
   },
   {
     path: '',
+    component: HomeComponent,
+  },
+  {
+    path: '**',
     redirectTo: 'home',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
